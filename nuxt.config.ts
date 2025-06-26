@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'github_pages',
     prerender: {
-      routes: ['/cocktails/margarita'],
+      routes: ['/', '/cocktails/:code'],
     },
   },
   compatibilityDate: '2025-05-15',
