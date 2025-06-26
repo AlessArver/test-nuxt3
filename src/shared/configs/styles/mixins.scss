@@ -1,0 +1,11 @@
+@use 'sass:list';
+
+@mixin googleFont($family, $weights: ()) {
+  $weights-str: if(
+    list.length($weights) > 0,
+    ':' + list.join($weights, comma),
+    ''
+  );
+
+  @import url('https://fonts.googleapis.com/css2?family=#{$family}#{$weights-str}&display=swap');
+}

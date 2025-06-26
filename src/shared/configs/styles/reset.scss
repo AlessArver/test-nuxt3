@@ -1,0 +1,76 @@
+/* Обнуляем отступы и стили у всех элементов */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Стандартная типографика */
+html,
+body {
+  height: 100%;
+  font-family: system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #111;
+  background-color: #fff;
+}
+
+/* Убираем отступы у заголовков */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+/* Убираем стили у списков */
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* У ссылок убираем подчеркивание */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Сброс формы */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+/* Картинки */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Таблицы */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Убираем transition на автозаполненные инпуты (Chrome) */
+input:-webkit-autofill {
+  transition: background-color 9999s ease-in-out 0s;
+}

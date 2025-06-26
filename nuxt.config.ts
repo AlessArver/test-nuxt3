@@ -1,0 +1,25 @@
+export default defineNuxtConfig({
+  compatibilityDate: '2025-05-15',
+  devtools: { enabled: true },
+  typescript: { strict: true },
+  modules: ['@pinia/nuxt'],
+  srcDir: 'src/',
+  css: [
+    '~/shared/configs/styles/reset.scss',
+    '~/shared/configs/styles/main.scss',
+  ],
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@use "~/shared/configs/styles/global.scss" as *;\n',
+        },
+      },
+    },
+  },
+  runtimeConfig: {
+    public: {
+      apiBase: 'https://www.thecocktaildb.com/api/json/v1/1/',
+    },
+  },
+});
