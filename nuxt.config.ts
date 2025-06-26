@@ -1,11 +1,7 @@
 export default defineNuxtConfig({
+  ssr: false,
   app: { baseURL: '/test-nuxt3/' },
-  nitro: {
-    preset: 'github_pages',
-    prerender: {
-      routes: ['/', '/cocktails/:code'],
-    },
-  },
+  nitro: { preset: 'github_pages' },
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
   typescript: { strict: true },

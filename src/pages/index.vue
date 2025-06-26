@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink to="/margarita">Перейти к Margarita</NuxtLink>
+  <NuxtLink to="/cocktails/margarita">Перейти к Margarita</NuxtLink>
 </template>
 
 <script lang="ts">
