@@ -1,4 +1,6 @@
 export default defineNuxtConfig({
+  app: { baseURL: '/AlessArver/test-nuxt3/' },
+  nitro: { preset: 'github_pages' },
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
   typescript: { strict: true },
