@@ -1,6 +1,6 @@
 export default defineNuxtConfig({
   ssr: false,
-  app: { baseURL: '/test-nuxt3/' },
+  app: { baseURL: '/test-nuxt3/', buildAssetsDir: 'assets' },
   nitro: { preset: 'github_pages' },
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
