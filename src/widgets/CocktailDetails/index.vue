@@ -20,7 +20,15 @@
         </ul>
       </div>
       <div :class="$style.imgWrapper">
-        <img :src="cocktail.strDrinkThumb" loading="lazy" alt="Cocktail" />
+        <NuxtImg
+          :src="cocktail.strDrinkThumb"
+          loading="lazy"
+          alt="Cocktail"
+          format="webp"
+          width="200"
+          height="200"
+          :class="$style.image"
+        />
       </div>
     </div>
   </div>
