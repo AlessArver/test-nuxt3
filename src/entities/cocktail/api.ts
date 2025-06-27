@@ -1,4 +1,5 @@
 import { api } from '~/shared/api';
+
 import type { IFetchCocktailsResponse } from './types';
 
 export const fetchCocktails = async (cocktailCode: string) => {

@@ -5,8 +5,6 @@ instance.interceptors.response.use(
   (response) => response.data,
   (error) => {
     if (axios.isAxiosError(error)) {
-      console.error('API Error:', error.response?.data);
-
       return Promise.reject(error.response?.data || error.message);
     }
     return Promise.reject(error);

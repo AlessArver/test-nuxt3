@@ -2,17 +2,21 @@
   <div :class="$style.wrapper">
     <NuxtLayout name="404">
       <div>
-        <Typography class="text-4xl">Страница не найдена</Typography>
-        <Typography>
+        <TypographyUI class="text-4xl">Страница не найдена</TypographyUI>
+        <TypographyUI>
           <NuxtLink to="/cocktails/margarita">На главную</NuxtLink>
-        </Typography>
+        </TypographyUI>
       </div>
     </NuxtLayout>
   </div>
 </template>
 
 <script lang="ts" setup>
-import Typography from '~/shared/ui/Typography/index.vue';
+import TypographyUI from '~/shared/ui/TypographyUI/index.vue';
+
+defineOptions({
+  name: 'ErrorPage',
+});
 </script>
 
 <style lang="scss" module>

@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+
 import { fetchCocktails } from './api';
 import type { CocktailCodeType, ICocktaislUI } from './types';
 

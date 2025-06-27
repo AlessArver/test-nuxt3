@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
   typescript: { strict: true },
-  modules: ['@pinia/nuxt', '@nuxt/image'],
+  modules: ['@pinia/nuxt', '@nuxt/image', '@nuxt/eslint'],
   srcDir: 'src/',
   css: [
     '~/shared/configs/styles/reset.scss',

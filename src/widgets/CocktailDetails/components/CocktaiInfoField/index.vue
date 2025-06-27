@@ -1,26 +1,23 @@
 <template>
-  <Typography :variant="TypographyVariant.body" :class="$style.wrapper">
+  <TypographyUI variant="body" :class="$style.wrapper">
     <strong>{{ label }}:</strong>
     {{ value }}
-  </Typography>
+  </TypographyUI>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import Typography, {
-  TypographyVariant,
-} from '~/shared/ui/Typography/index.vue';
+<script setup lang="ts">
+import TypographyUI from '~/shared/ui/TypographyUI/index.vue';
 
-export default defineComponent({
+const { label, value } = withDefaults(
+  defineProps<{
+    label: string;
+    value?: string;
+  }>(),
+  { value: '' }
+);
+
+defineOptions({
   name: 'CocktaiInfoField',
-  components: { Typography },
-  props: {
-    label: { type: String, required: true },
-    value: { type: String },
-  },
-  setup(props) {
-    return { ...props, TypographyVariant };
-  },
 });
 </script>
 

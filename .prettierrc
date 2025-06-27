@@ -1,5 +1,25 @@
 {
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
   "semi": true,
   "singleQuote": true,
-  "trailingComma": "es5"
+  "trailingComma": "es5",
+  "importOrder": [
+    "^vue$",
+    "^@?nuxt(.*)$",
+    "<THIRD_PARTY_MODULES>",
+
+    "^~/shared(.*)$",
+    "^~/features(.*)$",
+    "^~/entities(.*)$",
+    "^~/widgets(.*)$",
+    "^~/pages(.*)$",
+
+    "^~/(.*)$",
+    "^@/(.*)$",
+
+    "^.+\\.(css|scss)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }

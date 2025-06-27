@@ -1,21 +1,18 @@
 <template>
-  <Typography>
+  <TypographyUI>
     <NuxtLink to="/cocktails/margarita">Перейти к Margarita</NuxtLink>
-  </Typography>
+  </TypographyUI>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
 import { useRouter } from 'vue-router';
-import Typography from '~/shared/ui/Typography/index.vue';
 
-export default defineComponent({
+import TypographyUI from '~/shared/ui/TypographyUI/index.vue';
+
+const router = useRouter();
+router.replace('/cocktails/margarita');
+
+defineOptions({
   name: 'HomePage',
-  components: { Typography },
-  setup() {
-    const router = useRouter();
-    router.replace('/cocktails/margarita');
-    return {};
-  },
 });
 </script>

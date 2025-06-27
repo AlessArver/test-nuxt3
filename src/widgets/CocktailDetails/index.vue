@@ -1,8 +1,8 @@
 <template>
   <div v-if="cocktail" :class="$style.wrapper">
-    <Typography :variant="TypographyVariant.title" :class="$style.title">
+    <TypographyUI variant="title" :class="$style.title">
       {{ cocktail.strDrink }}
-    </Typography>
+    </TypographyUI>
     <div :class="$style.content">
       <div :class="$style.contentInfo">
         <CocktaiInfoField label="Категория" :value="cocktail.strCategory" />
@@ -12,7 +12,7 @@
           label="Инструкция"
           :value="cocktail.strInstructions"
         />
-        <Typography as="h3" :bold="700">Ингредиенты:</Typography>
+        <TypographyUI as="h3" :bold="700">Ингредиенты:</TypographyUI>
         <ul>
           <li v-for="(ingredient, index) in ingredients" :key="index">
             {{ ingredient.ingredient }}: {{ ingredient.measure }}
@@ -32,47 +32,43 @@
       </div>
     </div>
   </div>
-  <Typography :variant="TypographyVariant.body" v-else>Нет данных</Typography>
+  <TypographyUI v-else variant="body"> Нет данных </TypographyUI>
 </template>
 
-<script lang="ts">
-import { defineComponent, computed } from 'vue';
-import Typography, {
-  TypographyVariant,
-} from '~/shared/ui/Typography/index.vue';
+<script setup lang="ts">
+import { computed } from 'vue';
+
+import TypographyUI from '~/shared/ui/TypographyUI/index.vue';
+
+import type { ICocktail } from '~/entities/cocktail/types';
+
 import CocktaiInfoField from './components/CocktaiInfoField/index.vue';
-import { type ICocktail } from '~/entities/cocktail/types';
 
-export default defineComponent({
-  name: 'CocktailDetails',
-  components: { Typography, CocktaiInfoField },
-  props: {
-    cocktail: { type: Object as () => ICocktail, required: true },
-  },
-  setup({ cocktail }) {
-    const ingredients = computed(() => {
-      const result: { measure: string; ingredient: string }[] = [];
+const props = defineProps<{ cocktail: ICocktail }>();
 
-      for (const key in cocktail) {
-        if (key.startsWith('strIngredient')) {
-          const index = key.replace('strIngredient', '');
-          const ingredient = cocktail[key as keyof ICocktail];
-          const measure = cocktail[`strMeasure${index}` as keyof ICocktail];
+const ingredients = computed(() => {
+  const result: { measure: string; ingredient: string }[] = [];
 
-          if (ingredient && ingredient.trim()) {
-            result.push({
-              ingredient: ingredient.trim(),
-              measure: measure?.trim() || '—',
-            });
-          }
-        }
+  for (const key in props.cocktail) {
+    if (key.startsWith('strIngredient')) {
+      const index = key.replace('strIngredient', '');
+      const ingredient = props.cocktail[key as keyof ICocktail];
+      const measure = props.cocktail[`strMeasure${index}` as keyof ICocktail];
+
+      if (ingredient && ingredient.trim()) {
+        result.push({
+          ingredient: ingredient.trim(),
+          measure: measure?.trim() || '—',
+        });
       }
+    }
+  }
 
-      return result;
-    });
+  return result;
+});
 
-    return { ingredients, cocktail, TypographyVariant };
-  },
+defineOptions({
+  name: 'CocktailDetails',
 });
 </script>
 
