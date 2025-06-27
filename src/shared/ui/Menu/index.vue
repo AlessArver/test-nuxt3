@@ -10,19 +10,21 @@
       >
         +
       </li>
-      <li
+      <Typography
         v-for="{ name, url } in items"
+        as="li"
         :key="url"
         :class="[$style.menuItem, { [$style.active]: $route.path === url }]"
       >
         <NuxtLink :to="url">{{ name }}</NuxtLink>
-      </li>
+      </Typography>
     </ul>
   </nav>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import Typography from '~/shared/ui/Typography/index.vue';
 
 interface MenuItem {
   name: string;
@@ -31,6 +33,7 @@ interface MenuItem {
 
 export default defineComponent({
   name: 'Menu',
+  components: { Typography },
   props: {
     items: {
       type: Array as () => MenuItem[],

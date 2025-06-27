@@ -12,7 +12,7 @@
           label="Инструкция"
           :value="cocktail.strInstructions"
         />
-        <h3>Ингредиенты:</h3>
+        <Typography as="h3" :bold="700">Ингредиенты:</Typography>
         <ul>
           <li v-for="(ingredient, index) in ingredients" :key="index">
             {{ ingredient.ingredient }}: {{ ingredient.measure }}
@@ -24,7 +24,7 @@
       </div>
     </div>
   </div>
-  <div v-else>Нет данных</div>
+  <Typography :variant="TypographyVariant.body" v-else>Нет данных</Typography>
 </template>
 
 <script lang="ts">
@@ -63,11 +63,7 @@ export default defineComponent({
       return result;
     });
 
-    return {
-      ingredients,
-      cocktail,
-      TypographyVariant,
-    };
+    return { ingredients, cocktail, TypographyVariant };
   },
 });
 </script>

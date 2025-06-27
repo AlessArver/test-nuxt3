@@ -1,7 +1,7 @@
 <template>
   <component
     :is="Tag"
-    :class="[$style[variant], className]"
+    :class="[$style[`bold_${bold}`], $style[variant], className]"
     v-bind="passedProps"
   >
     <slot />
@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, type Component } from 'vue';
+import { defineComponent, type FunctionalComponent, type Component } from 'vue';
 
 type HtmlTagType = keyof HTMLElementTagNameMap;
 
@@ -23,6 +23,8 @@ export enum TypographyVariant {
   button = 'button',
 }
 
+export type TypographyWeight = 500 | 600 | 700;
+
 const tagMap: Record<TypographyVariant, HtmlTagType> = {
   title: 'h1',
   subtitle: 'h2',
@@ -33,11 +35,6 @@ const tagMap: Record<TypographyVariant, HtmlTagType> = {
   button: 'button',
 };
 
-export interface ITypographyProps {
-  variant?: TypographyVariant;
-  className?: string;
-}
-
 export default defineComponent({
   name: 'Typography',
   props: {
@@ -46,15 +43,23 @@ export default defineComponent({
       default: TypographyVariant.body,
       validator: (value: string) => value in tagMap,
     },
+    as: {
+      type: String as () => HtmlTagType | Component | FunctionalComponent,
+      default: undefined,
+    },
+    bold: {
+      type: Number as () => TypographyWeight,
+      default: 500,
+    },
     className: {
       type: String,
       default: '',
     },
   },
-  setup({ className, variant }: ITypographyProps, { attrs }) {
-    const Tag = computed(() => tagMap[variant as TypographyVariant]);
+  setup({ as, bold, className, variant }, { attrs }) {
+    const Tag = computed(() => as || tagMap[variant as TypographyVariant]);
 
-    return { Tag, className, passedProps: attrs };
+    return { Tag, bold, className, passedProps: attrs };
   },
 });
 </script>

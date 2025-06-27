@@ -2,9 +2,11 @@
   <div :class="$style.wrapper">
     <Menu :isOpen="openMenu" :items="navItems" :onToggle="handleToggleMenu" />
     <div :class="$style.cocktails">
-      <div v-if="cocktails.loading">Загрузка...</div>
-      <div v-else-if="cocktails?.error">{{ cocktails.error }}</div>
-      <div v-else-if="!cocktails.items?.length">Нет данных</div>
+      <Typography v-if="cocktails.loading">Загрузка...</Typography>
+      <Typography v-else-if="cocktails?.error">
+        {{ cocktails.error }}
+      </Typography>
+      <Typography v-else-if="!cocktails.items?.length">Нет данных</Typography>
       <CocktailDetails
         v-else
         v-for="cocktail in cocktails.items"
@@ -16,24 +18,25 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, watch, ref } from 'vue';
+import { defineComponent, computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import Menu from '~/shared/ui/Menu/index.vue';
 import CocktailDetails from '~/widgets/CocktailDetails/index.vue';
 import { COCKTAIL_CODES } from '~/entities/cocktail/constants';
 import { useCocktailStore } from '~/entities/cocktail/store';
 import { type CocktailCodeType } from '~/entities/cocktail/types';
+import Typography from '~/shared/ui/Typography/index.vue';
 
 export default defineComponent({
   name: 'CocktailsPage',
-  components: { Menu, CocktailDetails },
+  components: { Menu, Typography, CocktailDetails },
 
   async setup() {
     const store = useCocktailStore();
     const route = useRoute();
     const openMenu = ref(false);
 
-    const cocktailCode = computed(
+    const cocktailCode = computed<CocktailCodeType>(
       () => (route.params.code as CocktailCodeType) || 'margarita'
     );
     const cocktails = computed(() => store.getCocktails(cocktailCode.value));
