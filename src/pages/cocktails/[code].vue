@@ -47,14 +47,9 @@ export default defineComponent({
       openMenu.value = !openMenu.value;
     };
 
-    watch(
-      cocktailCode,
-      (code) => {
-        delete store.cocktails[code];
-        store.fetchCocktails(code);
-      },
-      { immediate: true }
-    );
+    onMounted(() => {
+      store.fetchCocktails(cocktailCode.value);
+    });
 
     return { navItems, cocktails, openMenu, handleToggleMenu };
   },
