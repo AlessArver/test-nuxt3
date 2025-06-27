@@ -4,8 +4,13 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
-body {
-  @include googleFont('Nunito', ('500' '700'));
-}
-</style>
+<script setup lang="ts">
+useHead({
+  link: [
+    {
+      rel: 'stylesheet',
+      href: 'https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap',
+    },
+  ],
+});
+</script>
